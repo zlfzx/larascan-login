@@ -3,7 +3,7 @@
         <x-slot name="logo">
             <p class="mb-2 font-bold">Login with QRCode</p>
             <div class="flex justify-center">
-                {!! QrCode::size(100)->generate(url('qr?session=' . session()->getId())); !!}
+                {!! QrCode::size(100)->generate(url('qr?session=' . base64_encode(session()->getId()))); !!}
             </div>
         </x-slot>
 

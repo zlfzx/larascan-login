@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\QRLoginEvent;
+use App\Http\Requests\Auth\QRLoginRequest;
 use Illuminate\Http\Request;
 use DB;
 
 class LoginQRCodeController extends Controller
 {
-    public function login(Request $request)
+    public function login(QRLoginRequest $request)
     {
-        if (!$request->has('session'))
-            dd('session required');
-
-
         // get session ID
         $sessionId = $request->session;
 
@@ -37,6 +35,8 @@ class LoginQRCodeController extends Controller
             'payload' => $newSession
         ]);
 
-        return 'refresh halaman tempat anda login!';
+        broadcast(new QRLoginEvent($sessionId));
+
+        return redirect()->route('dashboard')->with('login', 'Berhasil login');
     }
 }

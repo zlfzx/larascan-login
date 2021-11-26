@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+//
+// Broadcast::channel('qr-login', function () {
+    // $sess = DB::table('sessions')->find($session);
+
+    // return $sess->id === $session;
+
+//     return true;
+// });

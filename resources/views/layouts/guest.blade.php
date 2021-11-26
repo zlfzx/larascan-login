@@ -14,7 +14,11 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         <!-- Scripts -->
+        <script>
+            const SESSION_ID = "{{ session()->getId() }}";
+        </script>
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/qr_login.js') }}" defer></script>
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">

@@ -16,3 +16,5 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     require('tailwindcss'),
     require('autoprefixer'),
 ]);
+
+mix.js('resources/js/qr_login.js', 'public/js/qr_login.js');
