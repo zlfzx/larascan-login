@@ -24,7 +24,9 @@
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             // use video without audio
             const constraints = {
-                video: true,
+                video: {
+                    facingMode: 'environment'
+                },
                 audio: false
             }
 
@@ -40,15 +42,27 @@
             barcodeDetector.detect(video).then(codes => {
                 if (codes.length === 0) return;
 
+                // console.log(codes)
+
                 for (const barcode of codes) {
-                    alert(barcode)
+                    // console.log(barcode.rawValue)
+
+                    let hostname = window.location.hostname
+                    let value = barcode.rawValue
+                    let url = new URL(value)
+                    let search = url.search
+
+                    if (hostname == url.hostname && search.includes('session')) {
+                        clearInterval(detect)
+                        window.location.href = value
+                    }
                 }
             }).catch(err => {
                 console.log(err)
             })
         }
 
-        setInterval(detectCode, 100);
+        let detect = setInterval(detectCode, 100);
     </script>
 </body>
 </html>

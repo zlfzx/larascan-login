@@ -37,6 +37,6 @@ class LoginQRCodeController extends Controller
 
         broadcast(new QRLoginEvent($sessionId));
 
-        return redirect()->route('dashboard')->with('login', 'Berhasil login');
+        return redirect()->route('dashboard')->with('login', 'Berhasil login pada perangkat ' . $session->user_agent);
     }
 }
