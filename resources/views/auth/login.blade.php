@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <p class="mb-2 font-bold">Login with QRCode</p>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight mb-2">Login with QRCode</h2>
             <div class="flex justify-center">
                 {!! QrCode::size(150)->generate(url('qr?session=' . base64_encode(session()->getId()))); !!}
             </div>
